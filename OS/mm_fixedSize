@@ -1,0 +1,23 @@
+// Memory management with fixed size partitioning
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+   int ms,bs,n;
+   int mp[20];
+   printf(" Enter memory size and block size \n");
+   scanf("%d%d",&ms,&bs);
+   int nob=ms/bs;
+   int ef=ms-bs*nob;
+   printf(" External Fragmentation: \n %d \n", ef);
+   printf(" Enter no. of processes and their size\n");
+   scanf("%d", &n);
+   int tif=0;
+   for(int i=0;i<n;i++){
+       scanf("%d", &mp[i]);
+       tif= tif+bs-mp[i];
+   }
+   printf("\nInternal Fragmentation: \n %d ", tif);
+}
