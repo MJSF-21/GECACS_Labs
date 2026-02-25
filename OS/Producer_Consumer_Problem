@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include<stdlib.h>
+#define BUFFERSIZE 20;
+ int n,empty, full=0, item, item1;
+ int buffer[20];
+ int n=0, out=0, in=0, mutex=1; 
+ 
+ void wait(int s)
+ {
+     while(s<0)
+     {
+         printf("can't add item");
+         exit(0);
+     }
+     s--;
+ }
+ void signal(int s)
+ {
+     s++;
+ }
+ 
+ void consumer()
+ {
+     do{
+     wait(full);
+     wait(mutex);
+     item1= buffer[out];
+     printf("Consumer %d", item1);
+     out=out+1;
+     signal(mutex);
+     signal(empty);
+ }
+ while(out<n);
+ 
+ }
+ 
+ 
+ 
+ void produce() 
+ {
+     do
+     {
+         wait(empty);
+         wait(mutex);
+         printf("Enter item");
+         scanf("%d" ,&item);
+         buffer[in]=item;
+         in = in +1;
+         signal(mutex);
+         signal(full);
+     }
+     while(in<n);
+     
+ }
+ 
+ 
+
+void main()
+{
+    printf("Enter value of n");
+    scanf("%d",&n);
+    empty=n;
+    
+    while(in<n)
+    produce();
+    
+    while(in != out)
+    consumer();
+}
+   

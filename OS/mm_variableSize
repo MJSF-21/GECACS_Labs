@@ -1,0 +1,32 @@
+// Memory management with fixed size partitioning
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+   int ms,n;
+   int mp;
+   char ch='y';
+   printf("\n Enter memory size \n");
+   scanf("%d",&ms);
+   int temp=ms;
+  while(ch=='y' || ch=='Y'){
+   printf("\n Enter size of process\n");
+   scanf("%d", &mp);
+      if(mp<temp){
+      printf("\n Process Allocate");
+      temp-=mp;
+    }
+    else{
+        printf("Memory is full");
+        break;
+    }
+    printf("\n Do you want to continue (y/n)");
+    scanf("\n %c",& ch);
+   }
+   
+   printf("\n Total Memory Allocated:  %d", ms-temp);
+   printf("\n Total External Fragmentation:  %d", temp);
+   
+}
