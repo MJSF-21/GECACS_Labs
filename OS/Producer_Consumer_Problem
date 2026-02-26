@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include<stdlib.h>
+
 #define BUFFERSIZE 20;
+
  int n,empty, full=0, item, item1;
  int buffer[20];
  int n=0, out=0, in=0, mutex=1; 
